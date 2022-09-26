@@ -1,8 +1,7 @@
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class PosterManagerTest {
+public class PosterRepositoryTest {
     PosterData poster1 = new PosterData(1, "Матрица", 1990);
     PosterData poster2 = new PosterData(2, "Форест Гамп", 1999);
     PosterData poster3 = new PosterData(5, "Омен", 2018);
@@ -13,18 +12,20 @@ public class PosterManagerTest {
     PosterData poster8 = new PosterData(22, "Амероиканский пирог", 2006);
     PosterData poster9 = new PosterData(26, "Привет", 2015);
     PosterData poster10 = new PosterData(27, "Брат-2", 2005);
-    PosterRepository repo = new PosterRepository();
-    PosterManager manager = new PosterManager(repo);
 
     @Test
-    public void testDelAll() {
+    public void test() {
+        PosterRepository repo = new PosterRepository();
+        repo.save(poster1);
+        repo.save(poster2);
+        repo.save(poster3);
 
-        manager.removeAll();
 
-        PosterData[] expected = {};
-        PosterData[] actual = manager.showAll();
+
+        PosterData[] expected = {null};
+        PosterData[] actual = repo.findById(555);
 
         Assertions.assertArrayEquals(expected, actual);
-    }
 
+    }
 }
