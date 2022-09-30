@@ -6,15 +6,15 @@ public class PosterManager {
 
     }
 
-    public void add(PosterData poster){
+    public void add(PosterData poster) {
         repo.save(poster);
     }
 
-    public PosterData[] showAll (){
+    public PosterData[] showAll() {
         return repo.findAll();
     }
 
-    public void removeAll(){
+    public void removeAll() {
         repo.removeAll();
     }
 }

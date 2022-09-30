@@ -21,7 +21,6 @@ public class PosterRepositoryTest {
         repo.save(poster3);
 
 
-
         PosterData[] expected = {null};
         PosterData[] actual = repo.findById(555);
 
