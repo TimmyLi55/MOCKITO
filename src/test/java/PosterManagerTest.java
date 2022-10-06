@@ -2,9 +2,10 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 
 public class PosterManagerTest {
-    PosterRepository repo = new Mockito.mock(PosterRepository.class);
+    PosterRepository repo = Mockito.mock(PosterRepository.class);
     PosterManager manager = new PosterManager(repo);
     PosterData poster1 = new PosterData(1, "Матрица", 1990);
     PosterData poster2 = new PosterData(2, "Форест Гамп", 1999);
@@ -18,8 +19,27 @@ public class PosterManagerTest {
     PosterData poster10 = new PosterData(27, "Брат-2", 2005);
 
     @Test
-    public void MockitoTest() {
+    public void MockitoTest1() {
         PosterData[] poster = {poster1, poster2, poster3};
+        doReturn(poster).when(repo).findAll();
+
+        PosterData[] expected = {poster1, poster2, poster3};
+        PosterData[] actual = manager.showAll();
+
+        Assertions.assertArrayEquals(expected,actual);
+
+
+    }
+    @Test
+    public void MockitoTest2() {
+        PosterData[] poster = {poster1};
+
+        doReturn(poster).when(repo).findById(1);
+
+        PosterData[] expected = {poster1};
+        PosterData[] actual = repo.findById(1);
+
+        Assertions.assertArrayEquals(expected,actual);
 
 
     }
